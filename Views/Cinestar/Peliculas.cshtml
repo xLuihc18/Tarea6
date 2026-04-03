@@ -1,0 +1,41 @@
+﻿@using static CinestarApp.Models.Entidades
+@model IEnumerable<Pelicula>
+
+@{
+    ViewData["Title"] = "Cartelera";
+}
+
+<div class="contenido">
+    <div class="publicidad">
+        <a href="#"><img src="~/img/varios/starcard.jpg" /></a>
+        <a href="#"><img src="~/img/varios/cinefilo-star.jpg" /></a>
+    </div>
+    <div class="contenido-interno" id="contenido-interno">
+
+        <br /><h1>@ViewData["Title"]</h1><br />
+
+        @foreach (var peli in Model)
+        {
+            <div class="contenido-pelicula">
+                <div class="datos-pelicula">
+                    <h2>@peli.Titulo</h2><br />
+                    <p>@peli.Sinopsis</p>
+                    <br />
+                    <div class="boton-pelicula">
+                        <a asp-controller="Cinestar" asp-action="Pelicula" asp-route-id="@peli.Id">
+                            <img src="~/img/varios/btn-mas-info.jpg" width="120" height="30" alt="Ver info" />
+                        </a>
+                    </div>
+                    <div class="boton-pelicula">
+                        <a href="https://www.youtube.com/v/@peli.Link" target="_blank">
+                            <img src="~/img/varios/btn-trailer.jpg" width="120" height="30" alt="Ver trailer" />
+                        </a>
+                    </div>
+                </div>
+                <img src="~/img/pelicula/@(peli.Id).jpg" width="160" height="226" /><br /><br />
+            </div>
+        }
+
+    </div>
+</div>
+<div class="clearbox"><br></div>

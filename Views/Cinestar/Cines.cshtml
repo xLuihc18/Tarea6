@@ -1,0 +1,32 @@
+﻿@using static CinestarApp.Models.Entidades
+@model IEnumerable<Cine>
+
+@{
+    ViewData["Title"] = "Nuestros Cines";
+}
+
+<div class="contenido">
+    <div class="publicidad">
+        <a href="#"><img src="~/img/varios/starcard.jpg" /></a>
+        <a href="#"><img src="~/img/varios/cinefilo-star.jpg" /></a>
+    </div>
+    <div class="contenido-interno" id="contenido-interno">
+        <br /><h1>Nuestros Cines</h1><br />
+
+        @foreach (var cine in Model)
+        {
+            <div class="contenido-cine">
+                <img src="~/img/cine/@(cine.Id).1.jpg" width="227" height="170" />
+                <div class="datos-cine">
+                    <h4>@cine.RazonSocial</h4><br />
+                    <span>@cine.Direccion - @cine.Distrito<br /><br />Teléfono: @cine.Telefonos</span>
+                </div>
+                <br />
+                <a asp-controller="Cinestar" asp-action="Cine" asp-route-id="@cine.Id">
+                    <img src="~/img/varios/ico-info2.png" width="150" height="40" />
+                </a>
+            </div>
+        }
+    </div>
+</div>
+<div class="clearbox"><br /></div>

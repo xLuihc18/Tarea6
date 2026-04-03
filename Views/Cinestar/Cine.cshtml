@@ -1,0 +1,74 @@
+﻿@using static CinestarApp.Models.Entidades
+@model dynamic
+
+@{
+    var cine = Model.Cine;
+    ViewData["Title"] = cine.RazonSocial;
+}
+
+<div class="contenido">
+    <div class="publicidad">
+        <a href="#"><img src="~/img/varios/starcard.jpg" /></a>
+        <a href="#"><img src="~/img/varios/cinefilo-star.jpg" /></a>
+    </div>
+    <div class="contenido-interno" id="contenido-interno">
+
+        <h2>@cine.RazonSocial</h2>
+        <div class="cine-info">
+            <div class="cine-info datos">
+                <p>@cine.Direccion - @cine.Distrito</p>
+                <p>Teléfono: @cine.Telefonos</p>
+                <br />
+                <div class="tabla">
+                    @{
+                        int i = 0;
+                    }
+                    @foreach (var tarifa in Model.Tarifas)
+                    {
+                        <div class="fila @(i % 2 != 0 ? "impar" : "")">
+                            <div class="celda-titulo">@tarifa.DiasSemana</div>
+                            <div class="celda">@tarifa.Precio</div>
+                        </div>
+                        i++;
+                    }
+                </div>
+                <div class="aviso">
+                    <p>A partir del 1ro de julio de 2016, Cinestar Multicines realizará el cobro de la comisión de S/. 1.00 adicional...</p>
+                </div>
+            </div>
+
+            
+            <img src="~/img/cine/@(cine.Id).2.jpg" />
+
+            <br /><br /><h4>Los horarios de cada función están sujetos a cambios sin previo aviso.</h4><br />
+
+            <div class="cine-info peliculas">
+                <div class="tabla">
+                    <div class="fila">
+                        <div class="celda-cabecera">Películas</div>
+                        <div class="celda-cabecera">Horarios</div>
+                    </div>
+                    @foreach (var peli in Model.Peliculas)
+                    {
+                        <div class="fila impar">
+                            <div class="celda-titulo">@peli.Titulo</div>
+                            <div class="celda">@peli.Horarios</div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div>
+            <img style="float:left;" src="~/img/cine/@(cine.Id).3.jpg" alt="Imagen del cine" />
+            <span class="tx_gris">
+                Precios de los juegos: desde S/1.00 en todos los Cine Star.<br />
+                Horario de atención de juegos es de 12:00 m hasta las 10:30 pm.
+                <br /><br />
+                Visitános y diviértete con nosotros.
+                <br /><br />
+                <b>CINESTAR</b>, siempre pensando en tí.
+            </span>
+        </div>
+    </div>
+</div>
+<div class="clearbox"><br /></div>
